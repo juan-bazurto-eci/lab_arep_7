@@ -77,13 +77,12 @@ Para completar la arquitectura del servidor vamos a generar el certificado para 
     keytool -genkeypair -alias ecikeypair -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore t1.p12 -validity 3650 -ext SAN=ip:54.173.133.21,ip:54.80.198.89
     keytool -genkeypair -alias ecikeypair -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore t2.p12 -validity 3650 -ext SAN=ip:54.173.133.21,ip:54.80.198.89
 
-![](README/aws_2.png)
-
 Para levantar los contenedores debemos inicializar las variables del PUERTO, DNS, KS y KT en el comando docker run
 
     sudo docker run -d -p 5000:5000 -e KT=keystore/t2.p12 -e KS=keystore/t1.p12 -e DNS=https://54.80.198.89:5050/hello --name secure-server juanbazurtoeci/lab_arep_7
     sudo docker run -d -p 5050:5050 -e KT=keystore/t1.p12 -e KS=keystore/t2.p12 -e DNS=https://54.173.133.21:5000/hello -e PORT=5050 --name secure-server juanbazurtoeci/lab_arep_7
 
+![](README/aws_2.png)
 ![](README/aws_3.png)
 ![](README/aws_4.png)
 
@@ -106,7 +105,6 @@ Todo esto es ajustable por medio de variables de entorno como se explico en la s
 * HTML, JavaScript - Interfaz de usuario
 * [DockerHub](https://hub.docker.com/)
 * [SparkJava](https://sparkjava.com/)
-* [MongoDB](https://www.mongodb.com/)
 * [Amazon Web Services](https://aws.amazon.com/)
 
 ## Authors
